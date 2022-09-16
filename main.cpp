@@ -1,5 +1,6 @@
 #include<iostream>
 #include<string>
+#include <vector>
 #include<iomanip>
 #include<bits/stdc++.h>
 
@@ -8,6 +9,8 @@ using std::cin;
 using std::endl;
 using namespace std;
 using std::string;
+
+vector<int> y;
 
 struct irasas { //Sukuriama struktūra
     string Vard;
@@ -56,6 +59,7 @@ void ivedimas(irasas mas[], int i) //Funkcija skirta leisti vartotojui suvesti d
     do {
         cout<<"Įveskite studento egzamino pažymį:\n";
         cin>>mas[i].egz;
+        y.push_back(mas[i].egz);
     } 
       while (mas[i].egz<0 || mas[i].egz>10);
     cout<<"Įveskite visus studento pažymius (baigę rašykite '0' ):\n";
