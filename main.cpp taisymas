@@ -102,7 +102,7 @@ void atspausdinti(irasas mas[], int stud_k) //Resultato atspausdinimas
 }
 int main()
 {
-    irasas *paz; 
+    int *dim; 
     int stud_k;
     char vedimas;
   
@@ -111,7 +111,9 @@ int main()
         cout<<"Įveskite studentų kiekį (nuo 1 iki 30):\n";
         cin>>stud_k; //Įvedamas studentų kiekis
     }   while (int(stud_k)<0 || int(stud_k)>30); //Studentų negali būti daugiau nei 30
-    irasas mas[30];
+        irasas mas[25];
+        dim=new int[stud_k];
+  //mas.reserve(stud_k);
 
     do
     {
@@ -127,7 +129,7 @@ int main()
         else {auto_ived_paz(mas,i,6);} //Jei pasirinkome kad duomenys būtų suvesti automatiškai
     }
     atspausdinti(mas, stud_k); //Rezultatų atspausdinimas (void funkcijos)
-  delete[] paz;
-  paz=0;
-    return 0;
+  delete[] dim;
+    dim=0;
+  return 0;
 }
