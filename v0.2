@@ -125,31 +125,31 @@ void vard_ived(irasas mas[], int i) //Vardo ir pavardės įvedimo void funkcija
 	// Dvi simbolių eilutes palygina ir, jeigu reikia, sukeičia vietomis 
 
     if (A[i] < A[j]) 
-	  { 
-		  x = A[i]; 
-		  A[i] = A[j]; 
-		  A[j] = x; 
-		  y = C[i]; 
-		  C[i] = C[j]; 
-		  C[j] = y; 
-		  z = B[i]; 
-		  B[i] = B[j]; 
-		  B[j] = z; 
-      xx = D[i];
-      D[i] = D[j];
-      D[j] = xx;
-      yy = E[i];
-      E[i] = E[j];
-      E[j] = yy;
-      zz = F[i];
-      F[i] = F[j];
-      F[j] = zz;
-      xxx = G[i];
-      G[i] = G[j];
-      G[j] = xxx;
-      yyy = H[i];
-      H[i] = H[j];
-      H[j] = yyy;
+ { 
+	x = A[i]; 
+	A[i] = A[j]; 
+	A[j] = x; 
+	y = C[i]; 
+	C[i] = C[j]; 
+	C[j] = y; 
+	z = B[i]; 
+	B[i] = B[j]; 
+	B[j] = z; 	
+	xx = D[i];
+        D[i] = D[j];
+        D[j] = xx;
+        yy = E[i];
+        E[i] = E[j];
+        E[j] = yy;
+        zz = F[i];
+        F[i] = F[j];
+        F[j] = zz;
+        xxx = G[i];
+        G[i] = G[j];
+        G[j] = xxx;
+        yyy = H[i];
+        H[i] = H[j];
+        H[j] = yyy;
 	}     
      for (int i = 0; i<n-1; i++){
       cout<<A[i]<<B[i];}
