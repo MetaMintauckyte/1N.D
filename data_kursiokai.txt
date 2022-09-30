@@ -1,0 +1,4 @@
+3
+Tomas	Tomaitis  8 7 9 8 9 7
+Rokas   Rokaitis    6 4 10 7 6 8
+Vardenis Pavardenis 8 4 6 3 7 9
