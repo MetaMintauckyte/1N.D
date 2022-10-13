@@ -3,71 +3,55 @@
 #include<iomanip>
 #include<bits/stdc++.h>
 
-using std::cout; //Priemonės, kad kiekvieną kart nereiktų rašyt std:
+using std::cout; 
 using std::cin;
 using std::endl;
 using namespace std;
 using std::string;
 
-struct irasas { //Sukuriama struktūra
+struct irasas { 
     string Vard;
     string Pav;
     vector<int> paz;
     int egz;
-    float Galut=0; //Galutinis rezultatas float tipo gali būti po kablelio
+    float Galut=0; 
     float Med=0;
 };
 
-void skaityti(string kursioku_failas, vector<irasas> &mas, int &n)
+void mediana(vector<irasas> &mas, int stud_nr) 
 {
-    ifstream K (kursioku_failas);
-    irasas studentas;
+    int sk=0; 
 
-    K >> n;
-    studentas.paz.resize(5);
-
-    for (int i = 0; i < n; i++)
-    {
-        K >> studentas.Vard >> studentas.Pav >> studentas.paz[0] >> studentas.paz[1] >> studentas.paz[2] >> studentas.paz[3] >> studentas.paz[4] >> studentas.egz;
-        mas.push_back(studentas);
-    }
-    K.close();
-}
-
-void mediana(vector<irasas> &mas, int stud_nr) //Funkcija skirta skaičiuoti medianą
-{
-    int sk=0; //Skaitiklis. Pažymių kiekis
-
-    for (int i=0; i<10; i++) //Indeksas ne didesnis už 10
+    for (int i=0; i<10; i++) 
     {
         if (mas[stud_nr].paz[i]>0)
         {   sk++; }
 
-        if (mas[stud_nr].paz[i]==0) //Sąlyga jei įvedėme pažymį 0 (baigėme rašyti)
+        if (mas[stud_nr].paz[i]==0) 
         {
           sk--;
-          break; //Nutraukiame ciklą
+          break; 
         }
     }
 
-    if (sk%2==0) //Jei skaitiklis yra lyginis skaičius
+    if (sk%2==0) 
     {  mas[stud_nr].Med = float(((mas[stud_nr].paz[sk/2-1])+(mas[stud_nr].paz[(sk/2)]))/2.0);}
     else
     {  mas[stud_nr].Med = mas[stud_nr].paz[(sk/2)];}
 }
 
-int generavimas() //Sugeneruoja atsitiktinius pažymius nuo 1 iki 10
+int generavimas() 
 {
     return rand()%10+1;
 }
 
-void auto_ived_paz(vector<irasas> &mas, int i, int visi_paz) // Suvedimo funkcija. Į turimą masyvą mas[] įdedami automatiškai sugeneruoti pažymiai ir egzamino rezultatas
+void auto_ived_paz(vector<irasas> &mas, int i, int visi_paz) 
 {
-    mas[i].egz=generavimas(); //Masyve esantis egzamino rezultatas yra nukreipianas į funkciją void, kur automatiškai generuojami pažymiai nuo 1 iki 10
+    mas[i].egz=generavimas(); 
 
     int balas;
 
-    for (int x=0; x<visi_paz; x++) //For ciklas
+    for (int x=0; x<visi_paz; x++) 
     {
         balas = generavimas();
         mas[i].paz.push_back(balas);
@@ -78,7 +62,7 @@ void auto_ived_paz(vector<irasas> &mas, int i, int visi_paz) // Suvedimo funkcij
     mas[i].Galut=mas[i].Galut*0.4+0.6*mas[i].egz;
 }
 
-void ivedimas(vector<irasas> &mas, int i) //Funkcija skirta leisti vartotojui suvesti duomenis pačiam
+void ivedimas(vector<irasas> &mas, int i) 
 {
     do {
         cout<<"Įveskite studento egzamino pažymį:\n";
@@ -104,7 +88,7 @@ void ivedimas(vector<irasas> &mas, int i) //Funkcija skirta leisti vartotojui su
     mas[i].Galut=mas[i].Galut*0.4+0.6*mas[i].egz;
 }
 
-void vard_ived(vector<irasas> &mas, int i) //Vardo ir pavardės įvedimo void funkcija
+void vard_ived(vector<irasas> &mas, int i)
 {
     cout<<"Įveskite studento numeris: " <<i+1<< " duomenis:\n";
 
@@ -112,48 +96,18 @@ void vard_ived(vector<irasas> &mas, int i) //Vardo ir pavardės įvedimo void fu
         cout<<"Įveskite studento numeris: "<<i+1<<" vardą:\n";
         cin>>mas[i].Vard;
     }
-      while (mas[i].Vard.length()<0 || mas[i].Vard.length()>15); //Studento vardas negali būti ilgesnis nei 15 raidžių arba turėsime pakartoti įvedimą
-
+      while (mas[i].Vard.length()<0 || mas[i].Vard.length()>15); 
     do {
         cout<<"Įveskite studento numeris: " <<i+1<< " pavardę:\n";
         cin >> mas[i].Pav;
     }
-      while (mas[i].Pav.length()<0 && mas[i].Pav.length()>20); //Studento pavardė negali būti ilgesnė nei 20 raidžių arba turėsime pakartoti įvedimą
-
-    cout << endl;
+      while (mas[i].Pav.length()<0 && mas[i].Pav.length()>20); 
 }
 
-void atspausdinti(vector<irasas> &mas, int stud_k) //Resultato atspausdinimas
+void atspausdinti(vector<irasas> &mas, int stud_k) 
 {
-    cout << "Nuskaityti studentų duomenys:"
-         << endl<<endl
-         << setw(10)<<left<<"Vardas"
-         << setw(15)<<left<<"Pavarde"
-         << setw(4) <<left<<"ND1"
-         << setw(4) <<left<<"ND2"
-         << setw(4) <<left<<"ND3"
-         << setw(4) <<left<<"ND4"
-         << setw(4) <<left<<"ND5"
-         << setw(4) <<left<<"Egzaminas"
-         << endl;
-
-    for (int i = 0; i < stud_k; i++)
-    {
-        cout << setw(10)<<mas[i].Vard
-             << setw(15)<<mas[i].Pav
-             << setw(4) <<mas[i].paz[0]
-             << setw(4) <<mas[i].paz[1]
-             << setw(4) <<mas[i].paz[2]
-             << setw(4) <<mas[i].paz[3]
-             << setw(4) <<mas[i].paz[4]
-             << setw(4) <<mas[i].egz
-             << endl;
-    }
-    cout << endl<<endl;
-
-    cout << "Apskaičiuoti rezultatai:";
     cout<<std::setprecision(3);
-    cout<<endl<<endl; //Tuščia eilutė
+    cout<<"\n\n"; 
     cout<<setw(21)<<left<<"Vardas";
     cout<<setw(21)<<left<<"Pavardė";
     cout<<setw(18)<<left<<"Galutinis(vid.)";
@@ -170,48 +124,39 @@ void atspausdinti(vector<irasas> &mas, int stud_k) //Resultato atspausdinimas
     }
 }
 
-int main(int argc, char *argv[])
+int main()
 {
     vector<irasas> mas;
     int stud_k;
     int stud_max = 30;
     char vedimas;
 
-    if (argc>1)
+    srand(time(NULL));
+
+    do 
     {
-        skaityti(argv[1], mas, stud_k);
-        //mediana(mas, i);
+        cout<<"Įveskite studentų kiekį (nuo 1 iki "<<stud_max<<"):\n";
+        cin>>stud_k; 
     }
-    else
+      while (int(stud_k)<0 || int(stud_k)>stud_max); 
+
+    mas.resize(stud_k);
+
+    do {
+        cout<<"Ar norite, kad studentų pažymiai būtų suvesti automatiškai? Jei taip rašykite 'T'. Jei ne rašykite 'N'\n";
+
+        cin>>vedimas; 
+        if (vedimas!='T' && vedimas!='N') { cout<<"Įveskite iš naujo\n"; } 
+    }
+      while (vedimas!='T' && vedimas!='N'); 
+
+    for (int i=0; i<stud_k; i++) 
     {
-        srand(time(NULL));
-
-        do //Kilpa, kuri neleis įvesti netinkamą studentų skaičių
-        {
-            cout<<"Įveskite studentų kiekį (nuo 1 iki "<<stud_max<<"):\n";
-            cin>>stud_k; //Įvedamas studentų kiekis
-        }
-          while (int(stud_k)<0 || int(stud_k)>stud_max); //Studentų negali būti daugiau nei nurodyta konstantoje stud_max, dabartiniu atveju 30
-
-        mas.resize(stud_k);
-
-        do {
-            cout<<"Ar norite, kad studentų pažymiai būtų suvesti automatiškai? Jei taip rašykite 'T'. Jei ne rašykite 'N'\n";
-
-            cin>>vedimas; //Įrašome T arba N
-            if (vedimas!='T' && vedimas!='N') { cout<<"Įveskite iš naujo\n"; } //Jei įvestas simbolis nebuvo T arba N, tada vedame iš naujo, kol įvesime teisingai
-        }
-          while (vedimas!='T' && vedimas!='N'); //Ciklas kai įvedėme teisingai
-
-        for (int i=0; i<stud_k; i++) //For ciklas su indeksu i, kuris yra mežesnis už įvestų studentų kiekį, jog žinotume kiek kartų prašyti vardo įvedimo ir t.t
-        {
-            vard_ived(mas, i);
-            if (vedimas=='N') {ivedimas(mas, i);} //Jei pasirinkome duomenis suvesti pačiam, tai kviečiama void funkcija
-            else {auto_ived_paz(mas,i,6);} //Jei pasirinkome kad duomenys būtų suvesti automatiškai
-            mediana(mas, i);
-        }
+        vard_ived(mas, i);
+        if (vedimas=='N') {ivedimas(mas, i);} 
+        else {auto_ived_paz(mas,i,6);} 
+        mediana(mas, i);
     }
 
-    atspausdinti(mas, stud_k); //Rezultatų atspausdinimas (void funkcijos)
+    atspausdinti(mas, stud_k);
     return 0;
-}
