@@ -27,10 +27,10 @@ bool LygInter(irasas i1, irasas i2)
     return (i1.Galut < i2.Galut);
 }
 
-string ToString(int value){
+string ToString(int reiksme){
     stringstream ss;
     std::string s;
-    ss << value;
+    ss << reiksme;
     ss >> s;
 
     return s;
@@ -83,7 +83,7 @@ bool ProtingiNuskriausti(vector<irasas> mas)
     clock_t begin = clock();
     sort(mas.begin(), mas.end(), LygInter);
     clock_t end = clock();
-    cout << mas.size() << " Irasu rusiavimo didejimo tvarka laikas: ";
+    cout << mas.size() << " Irasu rusiavimas didejimo tvarka laikas: ";
     SkaiciavimasAtspausdinimas(begin, end);
 
     begin = clock();
@@ -100,7 +100,7 @@ bool ProtingiNuskriausti(vector<irasas> mas)
     }
     end = clock();
 
-    cout << mas.size() << " Irasu dalijimas i dvi grupes: ";
+    cout << mas.size() << " Irasu dalijimo i dvi grupes laikas: ";
     SkaiciavimasAtspausdinimas(begin, end);
 
     begin = clock();
@@ -134,37 +134,36 @@ void ProtingiNuskriaustiList(list<irasas>mas){
             ++it;
     }
     clock_t end = clock();
-    cout << listSize << " Irasu dalijimo i dvi grupes laikas (List): ";
+    cout << listSize << " Irasu dalijimas i dvi grupes laikas (List): ";
     SkaiciavimasAtspausdinimas(begin, end);
 }
 
-
 irasas SukurkStudent(int cpaz, int studentoId) {
     stringstream ss;
-    irasas newStudentas;
+    irasas NaujasStudentas;
     string id;
     ss << studentoId;
     ss >> id;
-    newStudentas.Vard = "Vardas" + id;
-    newStudentas.Pav = "Pavarde" + id;
-    newStudentas.egz = (rand() % 10) + 1;
+    NaujasStudentas.Vard = "Vardas" + id;
+    NaujasStudentas.Pav = "Pavarde" + id;
+    NaujasStudentas.egz = (rand() % 10) + 1;
     for(int i=0;i<cpaz;i++)
     {
         int g = (rand() % 10) + 1;
-        newStudentas.paz.push_back(g);
+        NaujasStudentas.paz.push_back(g);
     }
 
-    newStudentas.Galut = Galutinis(newStudentas.egz, newStudentas.paz);
-    newStudentas.Med = Mediana(newStudentas.paz);
+    NaujasStudentas.Galut = Galutinis(NaujasStudentas.egz, NaujasStudentas.paz);
+    NaujasStudentas.Med = Mediana(NaujasStudentas.paz);
 
-    return newStudentas;
+    return NaujasStudentas;
 }
 
 vector<irasas>SkaitytiNuoFailo (string fileName){
     clock_t begin = clock();
     ifstream inputFile(fileName);
     string line;
-    vector<irasas>vektorius;//create a vector of Student objects
+    vector<irasas>vektorius;//Sukuria studento objektu vektoriu
     if(inputFile)
     {
         int k;
@@ -176,19 +175,18 @@ vector<irasas>SkaitytiNuoFailo (string fileName){
             continue;
             irasas StudentoObjektas;
             istringstream st(line);
-            st >> StudentoObjektas.Vard; //read the firstName
-            st >> StudentoObjektas.Pav; //read the lastName
+            st >> StudentoObjektas.Vard; //Perskaitomas vardas
+            st >> StudentoObjektas.Pav; 
             for (int i = 0; i< 5; i++){
                 string nd;
                 st >> nd;
-                //cout << nd << endl;
                 StudentoObjektas.paz.push_back(stoi(nd));
             }
             st >> StudentoObjektas.Galut;
 
-            if(st)//check if input succeded
+            if(st)
             {
-                vektorius.push_back(StudentoObjektas);//add the studentObject into the vector
+                vektorius.push_back(StudentoObjektas);// Prideda StudentoObjektas i vektoriu
             }
         }
     }
@@ -207,7 +205,7 @@ list<irasas>SkaitytiNuoFailoSaraso (string fileName){
     clock_t begin = clock();
     ifstream inputFile(fileName);
     string line;
-    list<irasas>Sarasas;//create a list of Student objects
+    list<irasas>Sarasas;//Sukuriam studentu objektu sarasa
     if(inputFile)
     {
         int k;
@@ -219,25 +217,23 @@ list<irasas>SkaitytiNuoFailoSaraso (string fileName){
             continue;
             irasas StudentoObjektas;
             istringstream st(line);
-            st>>StudentoObjektas.Vard; //read the firstname
-            st>>StudentoObjektas.Pav; //read the lastname
+            st>>StudentoObjektas.Vard;
+            st>>StudentoObjektas.Pav;
             for (int i = 0; i< 5; i++){
                 string nd;
                 st >> nd;
-                //cout << nd << endl;
                 StudentoObjektas.paz.push_back(stoi(nd));
             }
             st >>StudentoObjektas.Galut;
-
-            if(st)//check if input succeded
+            if(st)//Patikrinimas ar input pavyko
             {
-                Sarasas.push_back(StudentoObjektas);//add the studentObject into the list
+                Sarasas.push_back(StudentoObjektas);//Pridėti StudentoObjektas i sarasa
             }
         }
     }
     else
     {
-        cout << "Failas negali buti atidarytas" << endl;
+        cout << "Klaida! Failo negalima atidaryti" << endl;
     }
 
     clock_t end = clock();
@@ -250,7 +246,7 @@ list<irasas>SkaitytiNuoFailoSaraso (string fileName){
 
 vector<irasas> GaukStudentus(int cStud){
     clock_t begin = clock();
-    int cpaz= 5;
+    int cpaz = 5;
 
     string check;
     vector<irasas>mas;
