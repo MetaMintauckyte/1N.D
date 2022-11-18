@@ -17,3 +17,5 @@ Surūšiuoti studentai išvedami į du naujus failus:
 Failai įrašomi tuščiame "files" aplanke.
 
 Atliekama programos veikimo greičio (spartos) analizė: t.y. išmatuojama programos sparta išskiriant kiek laiko užtruko kiekvienas iš žemiau išvardintų žingsnių:
+
+![195777943-cbdafc45-349c-485e-b594-c6d35619eebe](https://user-images.githubusercontent.com/113545506/202640139-a772b065-86fa-4872-96ed-78ff148fdaf6.png)
