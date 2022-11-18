@@ -6,20 +6,19 @@
 #include <ctime>
 #include <vector>
 #include <sstream>
-//#include "Head.h"
+#include <string>
 
-using std::cout;
-using std::cin;
-using std::endl;
 using namespace std;
 using std::string;
+using std::vector;
+using std::endl;
 
-struct irasas {
+struct irasas { //Sukuriama struktūra
     string Vard;
     string Pav;
     vector<int> paz;
     int egz;
-    float Galut=0;
+    float Galut=0; //Galutinis rezultatas float tipo gali būti po kablelio
     float Med=0;
 };
 
@@ -70,7 +69,7 @@ void SpausdintiStudentus(vector<irasas>mas, string fileName)
 
     for(int i=0; i < mas.size(); i++)
     {
-        File << setw(10) << left << mas[i].Vard << setw(10) << left << mas[i].Pav << setw(19) << left << mas[i].Galut << setw(10) << left << mas[i].Med<< endl;
+        File << setw(16) << left << mas[i].Vard << setw(16) << left << mas[i].Pav << setw(19) << left << mas[i].Galut << setw(10) << left << mas[i].Med<< endl;
     }
     File.close();
 }
@@ -158,8 +157,6 @@ vector<irasas> GaukStudentus(int cStud){
 
     SpausdintiStudentus(mas, stringStudentas);
 
-    //vector<irasas> readFromFile = ReadFormFile("1000-students");
-
     ProtingiNuskriausti(mas);
     clock_t end = clock();
 
@@ -169,225 +166,4 @@ vector<irasas> GaukStudentus(int cStud){
     cout << endl;
 
     return mas;
-}
-
-void skaityti(string kursioku_failas, vector<irasas> &mas, int &n)
-{
-    ifstream K (kursioku_failas);
-    irasas studentas;
-    string eilute;
-
-    getline(K, eilute); //Nuskaitoma pirma eilutė (be studentų duomenų)
-    cout << "Sąrašo antraštė: " << eilute << endl << endl;
-    n = 0;
-    studentas.paz.resize(5);
-
-    while (true)
-    {
-        K >> studentas.Vard >> studentas.Pav >> studentas.paz[0] >> studentas.paz[1] >> studentas.paz[2] >> studentas.paz[3] >> studentas.paz[4] >> studentas.egz;
-
-        if (K.eof()) { break; }
-
-        n++;
-        mas.push_back(studentas);
-    }
-
-    K.close();
-}
-
-void vidurkis(vector<irasas> &mas, int stud_nr)
-{
-    int visi_paz=mas[stud_nr].paz.size();
-
-    for (int x=0; x<visi_paz; x++)
-    {    mas[stud_nr].Galut += mas[stud_nr].paz[x]; }
-
-    mas[stud_nr].Galut=mas[stud_nr].Galut/visi_paz;
-    mas[stud_nr].Galut=mas[stud_nr].Galut*0.4+0.6*mas[stud_nr].egz;
-}
-
-void mediana(vector<irasas> &mas, int stud_nr) 
-{
-    int sk=0; 
-
-    for (int i=0; i<10; i++) 
-    {
-        if (mas[stud_nr].paz[i]>0)
-        {   sk++; }
-
-        if (mas[stud_nr].paz[i]==0) 
-        {
-          sk--;
-          break; 
-        }
-    }
-
-    if (sk%2==0) 
-    {  mas[stud_nr].Med = float(((mas[stud_nr].paz[sk/2-1])+(mas[stud_nr].paz[(sk/2)]))/2.0);}
-    else
-    {  mas[stud_nr].Med = mas[stud_nr].paz[(sk/2)];}
-}
-
-int generavimas() 
-{
-    return rand()%10+1;
-}
-
-void auto_ived_paz(vector<irasas> &mas, int i, int visi_paz) 
-{
-    mas[i].egz=generavimas(); 
-
-    int balas;
-
-    for (int x=0; x<visi_paz; x++) 
-    {
-        balas = generavimas();
-        mas[i].paz.push_back(balas);
-    }
-}
-
-void ivedimas(vector<irasas> &mas, int i) 
-{
-    do {
-        cout<<"Įveskite studento egzamino pažymį:\n";
-        cin>>mas[i].egz;
-    }
-      while (mas[i].egz<0 || mas[i].egz>10);
-
-    cout<<"Įveskite visus studento pažymius (baigę rašykite '0' ):\n";
-
-    int balas;
-
-    while (true)
-    {
-        cin>>balas;
-
-        if (balas==0) break;
-
-        mas[i].paz.push_back(balas);
-    }
-}
-
-void vard_ived(vector<irasas> &mas, int i) 
-{
-    cout<<"Įveskite studento numeris: " <<i+1<< " duomenis:\n";
-
-    do {
-        cout<<"Įveskite studento numeris: "<<i+1<<" vardą:\n";
-        cin>>mas[i].Vard;
-    }
-      while (mas[i].Vard.length()<0 || mas[i].Vard.length()>15); 
-
-    do {
-        cout<<"Įveskite studento numeris: " <<i+1<< " pavardę:\n";
-        cin >> mas[i].Pav;
-    }
-      while (mas[i].Pav.length()<0 && mas[i].Pav.length()>20); 
-
-    cout << endl;
-}
-
-void atspausdinti(vector<irasas> &mas, int stud_k)
-{
-    cout << "Nuskaityti studentų duomenys:"
-         << endl<<endl
-         << setw(10)<<left<<"Vardas"
-         << setw(15)<<left<<"Pavarde";
-
-    for (int j=0; j<mas[0].paz.size(); j++)
-    {   cout << setw(4) << "ND" + to_string(j+1); }
-
-    cout << setw(4) <<left<<"Egzaminas"
-         << endl;
-
-    for (int i = 0; i < stud_k; i++)
-    {
-        cout << setw(10)<<mas[i].Vard
-             << setw(15)<<mas[i].Pav;
-
-        for (int j=0; j<mas[i].paz.size(); j++)
-        {   cout << setw(4) <<mas[i].paz[j]; }
-
-        cout << setw(4) <<mas[i].egz
-             << endl;
-    }
-    cout << endl<<endl;
-
-    cout<<setprecision(3);
-    cout << "Apskaičiuoti rezultatai:";
-    cout<<endl<<endl; 
-    cout<<setw(21)<<left<<"Vardas";
-    cout<<setw(21)<<left<<"Pavardė";
-    cout<<setw(18)<<left<<"Galutinis(vid.)";
-    cout<<left<<"Galutinis(med.)\n";
-    cout<<"------------------------------------------------------------------------------\n";
-
-    for (int i=0; i<stud_k; i++)
-    {
-        cout<<setw(21)<<left<<mas[i].Vard;
-        cout<<setw(21)<<left<<mas[i].Pav;
-        cout<<setw(18)<<left<<mas[i].Galut;
-        cout<<setw(18)<<left<<mas[i].Med;
-        cout<<endl;
-    }
-    cout<<endl;
-}
-
-int main(int argc, char *argv[])
-{
-    vector<irasas> mas;
-    int stud_k;
-    int stud_max = 30;
-    char vedimas;
-
-    if (argc>1)
-    {
-        skaityti(argv[1], mas, stud_k);
-    }
-    else
-    {
-        srand(time(NULL));
-
-        do
-        {
-            cout<<"Įveskite studentų kiekį (nuo 1 iki "<<stud_max<<"):\n";
-            cin>>stud_k;
-        }
-          while (int(stud_k)<0 || int(stud_k)>stud_max);
-
-        mas.resize(stud_k);
-
-        do {
-            cout<<"Ar norite, kad studentų pažymiai būtų suvesti automatiškai? Jei taip rašykite 'T'. Jei ne rašykite 'N'\n";
-
-            cin>>vedimas;
-            if (vedimas!='T' && vedimas!='N') { cout<<"Įveskite iš naujo\n"; }
-        }
-          while (vedimas!='T' && vedimas!='N');
-
-        for (int i=0; i<stud_k; i++)
-        {
-            vard_ived(mas, i);
-            if (vedimas=='N') {ivedimas(mas, i);}
-            else {auto_ived_paz(mas,i,6);}
-        }
-    }
-
-    for (int i=0; i<stud_k; i++)
-    {
-        vidurkis(mas, i);
-        mediana(mas, i);
-    }
-
-    atspausdinti(mas, stud_k);
-
-
-  srand(time(0));
-
-    GaukStudentus(1000);
-    GaukStudentus(10000);
-    GaukStudentus(100000);
-    //GaukStudentus(1000000);
-
-    return 0;
 }
