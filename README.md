@@ -1,9 +1,9 @@
 ## V0.4 ##
 Atliekamas konteinerių testavimas: išmatuojama patobulintos v0.3 realizacijos veikimo sparta priklausomai nuo naudojamo vieno iš dviejų konteinerių:
 
-std::vector
+** std::vector **
 
-std::list
+** std::list **
 
 Tiek failų kūrimas, tiek ir surūšiuotų rezultatų išvedimas į failus nepriklauso nuo naudojamo konteinerio, todėl v0.4 versijoje matuojami šie programoje atliekami žingsniai (patobulinta programos veikimo greičio (spartos) analizė):
 
