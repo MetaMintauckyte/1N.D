@@ -9,7 +9,7 @@ Failų kūrimas ir surūšiuotų rezultatų išvedimas į failus nepriklauso nuo
 
  *duomenų nuskaitymas iš failų;
  
- *studentų rūšiavimas (dalijimas) į dvi grupes/kategorijas;
+ *studentų rūšiavimas į dvi grupes;
 
 Testavimas atliekamas su tais pačiais failais, sudarytais iš **1 000, 10 000, 100 000, 1 000 000** įrašų.
 
