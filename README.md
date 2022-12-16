@@ -4,6 +4,11 @@ Naudojimosi instrukcija:
 
 Norint, jog programa pilnai veiktų būtina sukurti failus su pavadinimais: studentai_1k.txt, studentai_10k.txt, studentai_100k.txt, studentai_1kk.txt. Šiose failuose programa FileGenerator.cpp atsitiktinai sugeneruoja studento vardą, pavardę, namų darbų pažymius, egzamino įvertinimą.
 
+Optimizuojama studentų rūšiavimo į dvi kategorijas (protingi,nuskriausti) realizacija.
+ * **1 strategija**: Bendro "studentai" konteinerio skaidymas į du naujus to paties tipo konteinerius: "protingi" ir "nuskriausti". Studentas yra dvejuose konteineriuose: bendrame "studentai" ir viename iš suskaidytų (protingi, nuskriausti).
+  * **2 strategija**: Bendro "students" konteinerio skaidymas panaudojant tik vieną naują konteinerį: "nuskriausti". Studentas yra nuskriaustas, jį programa įkelia į naująjį nuskriausti konteinerį ir ištrinti iš bendro "studentai" konteinerio. Po šio žingsnio "studentai" konteineryje liks vien tik protingi.
+
+
 Struktūroje "įrašas" yra saugoma informacija apie studentą.
 
 Atliekamos dvi strategijos (vector ir list tipo). Gauti testavimo rezultatai pavaizduoti lentelėje:
