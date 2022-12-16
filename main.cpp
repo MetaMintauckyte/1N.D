@@ -1,162 +1,47 @@
-#include<iostream>
-#include<string>
-#include<iomanip>
-#include<bits/stdc++.h>
+#include "Header.h"
+#include "FileGenerator.h"
 
-using std::cout; 
-using std::cin;
-using std::endl;
-using namespace std;
-using std::string;
+int main() {
 
-struct irasas { 
-    string Vard;
-    string Pav;
-    vector<int> paz;
-    int egz;
-    float Galut=0; 
-    float Med=0;
-};
+    int a;
+    cout<<"Jei norite sugeneruoti failus rasykite: 1  .";
+    cout<<"Jei norite testuoti irasus rasykite: 2"<<endl;
+    cin>>a;
+    a = 0;
+    cin>>a;
+    if (a==1){
+      cout << "Generuojame 1000 irasu\n";
+    generator_of_students(1000, "studentai_1k.txt");
 
-void mediana(vector<irasas> &mas, int stud_nr) 
-{
-    int sk=0; 
+    cout << "Generuojame 10000 irasu\n";
+    generator_of_students(10000, "studentai_10k.txt");
 
-    for (int i=0; i<10; i++) 
-    {
-        if (mas[stud_nr].paz[i]>0)
-        {   sk++; }
+    cout << "Generuojame 100000 irasu\n";
+    generator_of_students(100000, "studentai_100k.txt");
 
-        if (mas[stud_nr].paz[i]==0) 
-        {
-          sk--;
-          break; 
-        }
+    cout << "Generuojame 1000000 irasu\n";
+    generator_of_students(1000000, "studentai_1kk.txt");
+
+    cout << "Generuojame 10000000 irasu\n";
+    generator_of_students(10000000, "studentai_10kk.txt");
     }
+  else  {
+    cout << "Testuojame su 1000 irasu:\n";
+    testavimas(1000, "studentai_1k.txt", "nuskriausti_1k.txt", "protingi_1k.txt");
 
-    if (sk%2==0) 
-    {  mas[stud_nr].Med = float(((mas[stud_nr].paz[sk/2-1])+(mas[stud_nr].paz[(sk/2)]))/2.0);}
-    else
-    {  mas[stud_nr].Med = mas[stud_nr].paz[(sk/2)];}
-}
+    cout << "Testuojame su 10000 irasu:\n";
+    testavimas(10000, "studentai_10k.txt", "nuskriausti_10k.txt", "protingi_10k.txt");
 
-int generavimas() 
-{
-    return rand()%10+1;
-}
+    cout << "Testuojame su 100000 irasu:\n";
+    testavimas(100000, "studentai_100k.txt", "nuskriausti_100k.txt", "protingi_100k.txt");
 
-void auto_ived_paz(vector<irasas> &mas, int i, int visi_paz) 
-{
-    mas[i].egz=generavimas(); 
+    cout << "Testuojame su 1000000 irasu:\n";
+    testavimas(1000000, "studentai_1kk.txt", "nuskriausti_1kk.txt", "protingi_1kk.txt");
 
-    int balas;
+    cout << "Testuojame su 10000000 irasu:\n";
+    testavimas(10000000, "studentai_10kk.txt", "nuskriausti_10kk.txt", "protingi_10kk.txt");
+    
+  }
 
-    for (int x=0; x<visi_paz; x++) 
-    {
-        balas = generavimas();
-        mas[i].paz.push_back(balas);
-        mas[i].Galut = mas[i].Galut + balas;
-    }
-
-    mas[i].Galut=mas[i].Galut/visi_paz;
-    mas[i].Galut=mas[i].Galut*0.4+0.6*mas[i].egz;
-}
-
-void ivedimas(vector<irasas> &mas, int i) 
-{
-    do {
-        cout<<"Įveskite studento egzamino pažymį:\n";
-        cin>>mas[i].egz;
-    }
-      while (mas[i].egz<0 || mas[i].egz>10);
-
-    cout<<"Įveskite visus studento pažymius (baigę rašykite '0' ):\n";
-
-    int balas;
-
-    do {
-        cin>>balas;
-        if (balas!=0)
-        {
-            mas[i].paz.push_back(balas);
-            mas[i].Galut = mas[i].Galut + balas;
-        }
-    }
-      while (balas!=0);
-
-    mas[i].Galut=mas[i].Galut/mas[i].paz.size();
-    mas[i].Galut=mas[i].Galut*0.4+0.6*mas[i].egz;
-}
-
-void vard_ived(vector<irasas> &mas, int i)
-{
-    cout<<"Įveskite studento numeris: " <<i+1<< " duomenis:\n";
-
-    do {
-        cout<<"Įveskite studento numeris: "<<i+1<<" vardą:\n";
-        cin>>mas[i].Vard;
-    }
-      while (mas[i].Vard.length()<0 || mas[i].Vard.length()>15); 
-    do {
-        cout<<"Įveskite studento numeris: " <<i+1<< " pavardę:\n";
-        cin >> mas[i].Pav;
-    }
-      while (mas[i].Pav.length()<0 && mas[i].Pav.length()>20); 
-}
-
-void atspausdinti(vector<irasas> &mas, int stud_k) 
-{
-    cout<<std::setprecision(3);
-    cout<<"\n\n"; 
-    cout<<setw(21)<<left<<"Vardas";
-    cout<<setw(21)<<left<<"Pavardė";
-    cout<<setw(18)<<left<<"Galutinis(vid.)";
-    cout<<left<<"Galutinis(med.)\n";
-    cout<<"------------------------------------------------------------------------------\n";
-
-    for (int i=0; i<stud_k; i++)
-    {
-        cout<<setw(21)<<left<<mas[i].Vard;
-        cout<<setw(21)<<left<<mas[i].Pav;
-        cout<<setw(18)<<left<<mas[i].Galut;
-        cout<<setw(18)<<left<<mas[i].Med;
-        cout<<endl;
-    }
-}
-
-int main()
-{
-    vector<irasas> mas;
-    int stud_k;
-    int stud_max = 30;
-    char vedimas;
-
-    srand(time(NULL));
-
-    do 
-    {
-        cout<<"Įveskite studentų kiekį (nuo 1 iki "<<stud_max<<"):\n";
-        cin>>stud_k; 
-    }
-      while (int(stud_k)<0 || int(stud_k)>stud_max); 
-
-    mas.resize(stud_k);
-
-    do {
-        cout<<"Ar norite, kad studentų pažymiai būtų suvesti automatiškai? Jei taip rašykite 'T'. Jei ne rašykite 'N'\n";
-
-        cin>>vedimas; 
-        if (vedimas!='T' && vedimas!='N') { cout<<"Įveskite iš naujo\n"; } 
-    }
-      while (vedimas!='T' && vedimas!='N'); 
-
-    for (int i=0; i<stud_k; i++) 
-    {
-        vard_ived(mas, i);
-        if (vedimas=='N') {ivedimas(mas, i);} 
-        else {auto_ived_paz(mas,i,6);} 
-        mediana(mas, i);
-    }
-
-    atspausdinti(mas, stud_k);
     return 0;
+}
