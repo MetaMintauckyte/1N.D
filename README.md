@@ -13,7 +13,7 @@ Struktūroje "įrašas" yra saugoma informacija apie studentą.
 
 Atliekamos dvi strategijos (vector ir list tipo). Gauti testavimo rezultatai pavaizduoti lentelėje:
 
-------------**Vector duomenų tipas:** -----------------Antra strategija------------------**List duomenų tipas**--------------------
+------------**Vector duomenų tipas:** -----------------Antra strategija------------------**List duomenų tipas**-----------------
 
 |Įrašų apie studentus kiekis|Operacijos|Testavimo laikas|   |Įrašų apie studentus kiekis|Operacijos|Testavimo laikas|
 |-----|-----|-----|---|-----|-----|-----|
@@ -28,7 +28,7 @@ Atliekamos dvi strategijos (vector ir list tipo). Gauti testavimo rezultatai pav
 |10000000|nuskaitymas|6.99s |   |10000000|nuskaitymas|4.21s |
 |10000000|rušiavimas|0.99s |   |10000000|rušiavimas|0.56s |
 
-------------**Vector duomenų tipas:** -----------------Pirma strategija------------------**List duomenų tipas**--------------------
+------------**Vector duomenų tipas:** -----------------Pirma strategija------------------**List duomenų tipas**-----------------
 
 |Įrašų apie studentus kiekis|Operacijos|Testavimo laikas|   |Įrašų apie studentus kiekis|Operacijos|Testavimo laikas|
 |-----|-----|-----|---|-----|-----|-----|
