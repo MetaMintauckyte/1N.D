@@ -8,7 +8,7 @@ Struktūroje "įrašas" yra saugoma informacija apie studentą.
 
 Atliekamos dvi strategijos (vector ir list tipo). Gauti testavimo rezultatai pavaizduoti lentelėje:
 
---------------------**Vector duomenų tipas:** ---------------------------------------------------**List duomenų tipas**---------------------------------
+--------------------**Vector duomenų tipas:** ------------------------Antra strategija-----------------------**List duomenų tipas**--------------------------
 
 |Įrašų apie studentus kiekis|Operacijos|Testavimo laikas|   |Įrašų apie studentus kiekis|Operacijos|Testavimo laikas|
 |-----|-----|-----|---|-----|-----|-----|
@@ -22,4 +22,19 @@ Atliekamos dvi strategijos (vector ir list tipo). Gauti testavimo rezultatai pav
 |1000000|rušiavimas|0.44s |   |1000000|rušiavimas|0.40s |
 |10000000|nuskaitymas|6.99s |   |10000000|nuskaitymas|4.21s |
 |10000000|rušiavimas|0.99s |   |10000000|rušiavimas|0.56s |
+
+--------------------**Vector duomenų tipas:** ------------------------Antra strategija-----------------------**List duomenų tipas**--------------------------
+
+|Įrašų apie studentus kiekis|Operacijos|Testavimo laikas|   |Įrašų apie studentus kiekis|Operacijos|Testavimo laikas|
+|-----|-----|-----|---|-----|-----|-----|
+|1000|nuskaitymas|0.09s |   |1000|nuskaitymas|0.04s |
+|1000|rušiavimas|0.02s |   |1000|rušiavimas|0.01s |
+|10000|nuskaitymas|0.63s |   |10000|nuskaitymas|0.45s |
+|10000|rušiavimas|0.14s |   |10000|rušiavimas|0.11s |
+|100000|nuskaitymas|4.10s |   |100000|nuskaitymas|4.59s |
+|100000|rušiavimas|1.49s |   |100000|rušiavimas|1.27s |
+|1000000|nuskaitymas|52.11s |   |1000000|nuskaitymas|48.07s | 
+|1000000|rušiavimas|15.13s |   |1000000|rušiavimas|8.40s |
+|10000000|nuskaitymas|7.84min |   |10000000|nuskaitymas|6.22min |
+|10000000|rušiavimas|4.43min |   |10000000|rušiavimas|4.88min |
 
