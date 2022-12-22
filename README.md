@@ -1,7 +1,7 @@
-C++ programavimas
+# V2.0 #
 
-OP užduotys:
+- Naudojantis `Doxygen`, sukurta dokumentacija (įkeltas HTML folderis). 
+- Parengta įdiegimo instrukcija (įkeltas MakeFile)
 
--->Veikianti programa, kuri nuskaito studentų sąrašą ir jį išveda kitame txt rezultatų faile.
 
--->Panaudotas išimčių valdymas
+
