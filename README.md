@@ -1,7 +1,3 @@
-C++ programavimas
+# V1.5 #
 
-OP užduotys:
-
--->Veikianti programa, kuri nuskaito studentų sąrašą ir jį išveda kitame txt rezultatų faile.
-
--->Panaudotas išimčių valdymas
+- Sukurta bendra klasė klasė "Zmogus" ir jos išvestinę klasę "Studentas"
