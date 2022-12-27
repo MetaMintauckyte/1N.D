@@ -1,7 +1,5 @@
-C++ programavimas
+# V1.2 #
 
-OP užduotys:
+- Realizuoti "Rule of three" išvesties ir įvesties operatoriai
 
--->Veikianti programa, kuri nuskaito studentų sąrašą ir jį išveda kitame txt rezultatų faile.
 
--->Panaudotas išimčių valdymas
