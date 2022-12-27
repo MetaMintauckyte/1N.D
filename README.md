@@ -1,7 +1,3 @@
-C++ programavimas
+# V3.0 #
 
-OP užduotys:
-
--->Veikianti programa, kuri nuskaito studentų sąrašą ir jį išveda kitame txt rezultatų faile.
-
--->Panaudotas išimčių valdymas
+- Sukurtas v1.5 versijos setup.exe failas ir MSI paketas
