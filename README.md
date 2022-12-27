@@ -1,7 +1,7 @@
-C++ programavimas
+# V0.2 #
 
-OP užduotys:
-
--->Veikianti programa, kuri nuskaito studentų sąrašą ir jį išveda kitame txt rezultatų faile.
-
--->Panaudotas išimčių valdymas
+- v0.1 versijos papildymas
+- Studentai surūšiuojami
+- Naudojama struktūra
+- Nauji duomenų tipai perkelti į Header failus (.h)
+- Panaudotas išimčių valdymas `try` ir `catch`
